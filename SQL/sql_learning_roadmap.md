@@ -64,11 +64,13 @@ DDL is used to define and manage database structures.
     ```
 
 * **CREATE INDEX** - creates index for faster query.
+
     ```sql
     CREATE INDEX idx_name ON employees(name);
     ```
 
 * **DROP INDEX** - removes an index.
+
     ```sql
     DROP INDEX idx_name ON employees;
     ```
@@ -159,28 +161,45 @@ DQL is used to query data from tables.
     ```
 
 * **DISTINCT** - returns unique values.
+
     ```sql
     SELECT DISTINCT department_id FROM employees;
     ```
 
 * **LIKE** - pattern matching.
+
     ```sql
     SELECT * FROM employees WHERE name LIKE 'John%';
     ```
 
 * **IN** - check in a set of values.
+
     ```sql
     SELECT * FROM employees WHERE department_id IN (1,2,3);
     ```
 
 * **BETWEEN** - check between two values.
+
     ```sql
     SELECT * FROM employees WHERE salary BETWEEN 50000 and 70000;
     ```
 
 * **IS NULL/ IS NOT NULL** - check for null values.
+
     ```sql
     SELECT * FROM employees WHERE department_id IS NULL;
+    ```
+
+* **CASE WHEN THEN ELSE END** - conditional logic.
+
+    ```sql
+    SELECT name,
+        CASE
+            WHEN salary > 60000 THEN 'High Salary'
+            WHEN salary > 50000 THEN 'Medium Salary'
+            ELSE 'Low Salary'
+        END AS salary_category
+    FROM employees;
     ```
 
 ## 2. Advanced SQL Concepts
@@ -218,7 +237,9 @@ DQL is used to query data from tables.
     ```
 
 ### 2.2 Joins
+
 ![Join](img/join.png)
+
 * **INNER JOIN** - Returns matching records from both tables.
 
     ```sql
@@ -315,30 +336,39 @@ DQL is used to query data from tables.
         ```
 
     * **TRIM** - removes extra spaces.
+
         ```sql
         SELECT TRIM(' Hello ');
         ```
 
 * **Date Functions**
     * **NOW()** - current timestamp.
+
         ```sql
         SELECT NOW();
         ```
+
     * **DATE()** - extracts date part.
+
         ```sql
         SELECT DATE(NOW());
         ```
+
     * **YEAR(), MONTH(), DAY()** - extracts date parts.
+
         ```sql
         SELECT YEAR(NOW());
         ```
 
 * **Mathematical Functions**
     * **ROUND()** - rounds a number.
+
         ```sql
         SELECT ROUND(salary, 2) FROM employees;
         ```
+
     * **ABS()** - absolute value.
+
         ```sql
         SELECT ABS(-10);
         ```
@@ -450,6 +480,7 @@ DQL is used to query data from tables.
 * **Reducing subqueries**.
 * **Performance Tuning Best Practices**.
 * **EXPLAIN PLAN** - analyzes query performance.
+
     ```sql
     EXPLAIN SELECT * FROM employees WHERE salary > 50000;
     ```
@@ -499,6 +530,7 @@ DQL is used to query data from tables.
     ```
 
 * **Cursors** - allows row by row processing.
+
     ```sql
     DECLARE done INT DEFAULT FALSE;
     DECLARE emp_name VARCHAR(255);
